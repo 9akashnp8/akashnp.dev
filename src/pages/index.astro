@@ -7,23 +7,77 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Akash NP</title>
+		<title>Akash NP (9akashnp8)</title>
+		<link rel="stylesheet" href="/style.css">
+		<script>
+			const handleOnMouseMove = (e) => {
+				const { currentTarget: target } = e;
+			
+				const rect = target.getBoundingClientRect(),
+					x = e.clientX - rect.left,
+					y = e.clientY - rect.top;
+				
+				target.style.setProperty("--mouse-x", `${x}px`);
+				target.style.setProperty("--mouse-y", `${y}px`);
+			}
+			
+			const cards = document.getElementsByClassName("card");
+			for ( const card of cards) {
+				card.onmousemove = e => handleOnMouseMove(e);
+			}
+		</script>
 	</head>
-	<body class="bg-slate-200 grid place-items-center h-screen">
-		<div class="text-center">
-			<div>
-				<h1 class="text-6xl font-bold mb-5">Akash NP</h1>
-				<h3 class="text-xl"><span class="italic">Aspiring</span> Full Stack Developer</h3>
+	<body class="bg-neutral-900 text-slate-100">
+		<main class="flex px-8">
+			<div class="mx-auto max-w-5xl">
+				<div class="intro | flex py-10">
+					<div class="hero">
+						<h1 class="text-6xl font-bold mb-3">Akash NP</h1>
+						<p class="w-1/2 mb-3">
+							Hey there, I am a Full Stack developer who is motivated to solve problems, enjoys continous learning & very passionate about building open source tools.
+						</p>
+						<p class="w-1/2">
+							Through this site, I wish to showcase the work that I've done and more importantly, share what I'm learning to become a better developer.
+							<a href="/projects/minierp/">read more</a>	
+						</p>
+					</div>
+				</div>
+				<div class="projects | mx-auto mb-10">
+					<h2 class="text-3xl mb-5">Projects</h2>
+					<div class="cards | flex flex-wrap justify-center gap-2">
+						<div class="card flex flex-col flex-grow justify-between p-8">
+							<h3 class="text-2xl font-bold">miniERP</h3>
+							<p class="">open source ERP application to simplify common departmental tasks.</p>
+							<p class="ml-auto text-sm opacity-50">django, django-rest-framework</p>
+						</div>
+						<div class="card flex flex-col flex-grow justify-between p-8">
+							<h3 class="text-2xl font-bold">miniERP-Nextjs</h3>
+							<p class="">React Frontend for miniERP built with Next.js, consuming DRF REST APIs</p>
+							<p class="ml-auto text-sm opacity-50">Next.js, django-rest-framework</p>
+						</div>
+						<div class="card | flex flex-col flex-grow justify-between p-8">
+							<h3 class="text-2xl font-bold">Student Manager</h3>
+							<p class="">simple open source Student Management application.</p>
+							<p class="ml-auto text-sm opacity-50">Next.js, NextAuth, Prisma</p>	
+						</div>
+						<div class="card | flex flex-col flex-grow justify-between p-8">
+							<h3 class="text-2xl font-bold">Find My Polo</h3>
+							<p class="">hobby project to analyse the used VW Polo market</p>
+							<p class="ml-auto text-sm opacity-50">FastAPI, React, MongoDB</p>	
+						</div>
+						<div class="card | flex flex-col flex-grow justify-between p-8">
+							<h3 class="text-2xl font-bold">Next-Libgen</h3>
+							<p class="">A modern UI for Library Genesis (libgen.is)</p>
+							<p class="ml-auto text-sm opacity-50">Next.js, Prisma</p>	
+						</div>
+						<div class="card | flex flex-col flex-grow justify-between p-8">
+							<h3 class="text-2xl font-bold">OLX Web Scraper</h3>
+							<p class="">Script that can scrape through OLX listings and export to csv.</p>
+							<p class="ml-auto text-sm opacity-50">Selenium</p>	
+						</div>	
+					</div>
+				</div>
 			</div>
-			<div class="my-10">
-				<p>This site is a work in progress :). Being built with Astro 🚀❤️</p>
-				<p>
-					You can view my projects on my 
-					<a class="underline" href="https://github.com/9akashnp8">
-						Github Profile
-					</a> 
-				</p>
-			</div>
-		</div>
+		</main>
 	</body>
 </html>
