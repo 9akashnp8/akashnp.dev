@@ -1,0 +1,29 @@
+.card {
+    background-color: rgba(255, 255, 255, 0.02);
+    height: 240px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card::before {
+    background: radial-gradient(
+        700px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%
+    );
+    border-radius: inherit;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 500ms;
+}
