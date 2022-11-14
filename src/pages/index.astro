@@ -30,8 +30,8 @@ import Layout from "../components/Layout";
 		</script>
 	</head>
 	<body>
-		<Layout>
-			<div class="intro | flex py-10">
+		<Layout client:load>
+			<div class="intro | flex py-5">
 				<div class="hero">
 					<h1 class="text-6xl font-bold mb-3">Akash NP</h1>
 					<p class="md:w-1/2 mb-3">
@@ -43,7 +43,7 @@ import Layout from "../components/Layout";
 					</p>
 				</div>
 			</div>
-			<div class="projects | mx-auto mb-10">
+			<div class="projects | mx-auto mb-10 py-8">
 				<h2 class="text-3xl mb-5">Projects</h2>
 				<div class="cards | flex flex-wrap justify-center gap-2">
 					<ProjectCard
