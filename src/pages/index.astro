@@ -1,5 +1,6 @@
 ---
 import ProjectCard from "../components/ProjectCard";
+import Layout from "../components/Layout";
 ---
 
 <html lang="en">
@@ -28,57 +29,55 @@ import ProjectCard from "../components/ProjectCard";
 			}
 		</script>
 	</head>
-	<body class="bg-neutral-900 text-slate-100">
-		<main class="flex px-8">
-			<div class="mx-auto max-w-5xl">
-				<div class="intro | flex py-10">
-					<div class="hero">
-						<h1 class="text-6xl font-bold mb-3">Akash NP</h1>
-						<p class="md:w-1/2 mb-3">
-							Hey there, I am a Full Stack developer who is motivated to solve problems, enjoys continous learning & very passionate about building open source tools.
-						</p>
-						<p class="md:w-1/2">
-							Through this site, I wish to showcase the work that I've done and more importantly, share what I'm learning to become a better developer.
-							<a href="/projects/minierp/">read more</a>	
-						</p>
-					</div>
-				</div>
-				<div class="projects | mx-auto mb-10">
-					<h2 class="text-3xl mb-5">Projects</h2>
-					<div class="cards | flex flex-wrap justify-center gap-2">
-						<ProjectCard
-							projectTitle='miniERP'
-							projectDescription='open source ERP application to simplify common departmental tasks.'
-							projectStack='Django, django-rest-framework'
-						/>
-						<ProjectCard
-							projectTitle='miniERP-Nextjs'
-							projectDescription='React Frontend for miniERP built with Next.js, consuming DRF REST APIs'
-							projectStack='Next.js, django-rest-framework'
-						/>
-						<ProjectCard
-							projectTitle='Student Manager'
-							projectDescription='simple open source Student Management application.'
-							projectStack='Next.js, NextAuth, Prisma'
-						/>
-						<ProjectCard
-							projectTitle='Find My Polo'
-							projectDescription='hobby project to analyse the used VW Polo market'
-							projectStack='FastAPI, React, MongoDB'
-						/>
-						<ProjectCard
-							projectTitle='Next-Libgen'
-							projectDescription='A modern UI for Library Genesis (libgen.is)'
-							projectStack='Next.js, Prisma'
-						/>
-						<ProjectCard
-							projectTitle='OLX Web Scraper'
-							projectDescription='Script that can scrape through OLX listings and export to csv.'
-							projectStack='Selenium'
-						/>												
-					</div>
+	<body>
+		<Layout>
+			<div class="intro | flex py-10">
+				<div class="hero">
+					<h1 class="text-6xl font-bold mb-3">Akash NP</h1>
+					<p class="md:w-1/2 mb-3">
+						Hey there, I am a Full Stack developer who is motivated to solve problems, enjoys continous learning & very passionate about building open source tools.
+					</p>
+					<p class="md:w-1/2">
+						Through this site, I wish to showcase the work that I've done and more importantly, share what I'm learning to become a better developer.
+						<a href="/projects/minierp/">read more</a>	
+					</p>
 				</div>
 			</div>
-		</main>
+			<div class="projects | mx-auto mb-10">
+				<h2 class="text-3xl mb-5">Projects</h2>
+				<div class="cards | flex flex-wrap justify-center gap-2">
+					<ProjectCard
+						projectTitle='miniERP'
+						projectDescription='open source ERP application to simplify common departmental tasks.'
+						projectStack='Django, django-rest-framework'
+					/>
+					<ProjectCard
+						projectTitle='miniERP-Nextjs'
+						projectDescription='React Frontend for miniERP built with Next.js, consuming DRF REST APIs'
+						projectStack='Next.js, django-rest-framework'
+					/>
+					<ProjectCard
+						projectTitle='Student Manager'
+						projectDescription='simple open source Student Management application.'
+						projectStack='Next.js, NextAuth, Prisma'
+					/>
+					<ProjectCard
+						projectTitle='Find My Polo'
+						projectDescription='hobby project to analyse the used VW Polo market'
+						projectStack='FastAPI, React, MongoDB'
+					/>
+					<ProjectCard
+						projectTitle='Next-Libgen'
+						projectDescription='A modern UI for Library Genesis (libgen.is)'
+						projectStack='Next.js, Prisma'
+					/>
+					<ProjectCard
+						projectTitle='OLX Web Scraper'
+						projectDescription='Script that can scrape through OLX listings and export to csv.'
+						projectStack='Selenium'
+					/>												
+				</div>
+			</div>
+		</Layout>
 	</body>
 </html>
