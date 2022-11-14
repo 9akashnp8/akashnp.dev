@@ -1,4 +1,5 @@
 ---
+import ProjectCard from "../components/ProjectCard";
 ---
 
 <html lang="en">
@@ -45,36 +46,36 @@
 				<div class="projects | mx-auto mb-10">
 					<h2 class="text-3xl mb-5">Projects</h2>
 					<div class="cards | flex flex-wrap justify-center gap-2">
-						<div class="card flex flex-col flex-grow justify-between p-8">
-							<h3 class="text-2xl font-bold">miniERP</h3>
-							<p class="">open source ERP application to simplify common departmental tasks.</p>
-							<p class="ml-auto text-sm opacity-50">django, django-rest-framework</p>
-						</div>
-						<div class="card flex flex-col flex-grow justify-between p-8">
-							<h3 class="text-2xl font-bold">miniERP-Nextjs</h3>
-							<p class="">React Frontend for miniERP built with Next.js, consuming DRF REST APIs</p>
-							<p class="ml-auto text-sm opacity-50">Next.js, django-rest-framework</p>
-						</div>
-						<div class="card | flex flex-col flex-grow justify-between p-8">
-							<h3 class="text-2xl font-bold">Student Manager</h3>
-							<p class="">simple open source Student Management application.</p>
-							<p class="ml-auto text-sm opacity-50">Next.js, NextAuth, Prisma</p>	
-						</div>
-						<div class="card | flex flex-col flex-grow justify-between p-8">
-							<h3 class="text-2xl font-bold">Find My Polo</h3>
-							<p class="">hobby project to analyse the used VW Polo market</p>
-							<p class="ml-auto text-sm opacity-50">FastAPI, React, MongoDB</p>	
-						</div>
-						<div class="card | flex flex-col flex-grow justify-between p-8">
-							<h3 class="text-2xl font-bold">Next-Libgen</h3>
-							<p class="">A modern UI for Library Genesis (libgen.is)</p>
-							<p class="ml-auto text-sm opacity-50">Next.js, Prisma</p>	
-						</div>
-						<div class="card | flex flex-col flex-grow justify-between p-8">
-							<h3 class="text-2xl font-bold">OLX Web Scraper</h3>
-							<p class="">Script that can scrape through OLX listings and export to csv.</p>
-							<p class="ml-auto text-sm opacity-50">Selenium</p>	
-						</div>	
+						<ProjectCard
+							projectTitle='miniERP'
+							projectDescription='open source ERP application to simplify common departmental tasks.'
+							projectStack='Django, django-rest-framework'
+						/>
+						<ProjectCard
+							projectTitle='miniERP-Nextjs'
+							projectDescription='React Frontend for miniERP built with Next.js, consuming DRF REST APIs'
+							projectStack='Next.js, django-rest-framework'
+						/>
+						<ProjectCard
+							projectTitle='Student Manager'
+							projectDescription='simple open source Student Management application.'
+							projectStack='Next.js, NextAuth, Prisma'
+						/>
+						<ProjectCard
+							projectTitle='Find My Polo'
+							projectDescription='hobby project to analyse the used VW Polo market'
+							projectStack='FastAPI, React, MongoDB'
+						/>
+						<ProjectCard
+							projectTitle='Next-Libgen'
+							projectDescription='A modern UI for Library Genesis (libgen.is)'
+							projectStack='Next.js, Prisma'
+						/>
+						<ProjectCard
+							projectTitle='OLX Web Scraper'
+							projectDescription='Script that can scrape through OLX listings and export to csv.'
+							projectStack='Selenium'
+						/>												
 					</div>
 				</div>
 			</div>
