@@ -25,24 +25,27 @@ export default function Header() {
     return (
         <header className="py-8">
             <nav className="flex items-center gap-3 md:gap-8">
-                <div 
+                <a 
                     className={`${homeActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
                     onClick={handleClick}
+                    href="/"
                 >
                     Home
-                </div>
-                <div 
+                </a>
+                <a 
                     className={`${blogActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
                     onClick={handleClick}
+                    href="/blog"
                 >
                     Blog
-                </div>
-                <div 
+                </a>
+                <a 
                     className={`${contactActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
                     onClick={handleClick}
+                    href="/contact"
                 >
                     Contact
-                </div>
+                </a>
             </nav>
         </header>
     )
