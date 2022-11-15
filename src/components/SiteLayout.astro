@@ -1,5 +1,5 @@
 ---
-import Header from "../components/Header";
+import Header from "./Header";
 const { title } = Astro.props;
 ---
 <html lang="en">
@@ -32,7 +32,7 @@ const { title } = Astro.props;
 		<main class="flex px-8 bg-white dark:bg-neutral-900 text-black dark:text-white">
             <div class="mx-auto max-w-5xl">
                 <Header client:load />
-        		<slot/>
+				<slot/>
             </div>
         </main>
     </body>
