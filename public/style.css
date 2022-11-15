@@ -27,3 +27,36 @@
     opacity: 0;
     transition: opacity 500ms;
 }
+
+abbr[title] {
+    position: relative;
+    text-decoration: none;
+}
+
+.blog-abbr:hover::after {
+    background: #262626;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    bottom: -2.5rem;
+    content: attr(title);
+    display: block;
+    left: -1.5rem;
+    padding: 0.25em;
+    width: max-content;
+    position: absolute;    
+    z-index: 1;
+}
+
+.contact-abbr:hover::after {
+    background: #262626;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    bottom: -2.5rem;
+    content: attr(title);
+    display: block;
+    left: -0.75rem;
+    padding: 0.25em;
+    width: max-content;
+    position: absolute;    
+    z-index: 1;
+}
