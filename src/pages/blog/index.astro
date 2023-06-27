@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
+
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import BlogCard from "../../components/BlogCard";
+---
+<SiteLayout title="Akash N P | Blog">
+    {allBlogPosts.map((blogPost) => {
+        return (
+            <BlogCard
+                title={blogPost.data.title}
+                content={'content'}
+                slug={blogPost.slug}
+            />
+        )
+    })}
+</SiteLayout>

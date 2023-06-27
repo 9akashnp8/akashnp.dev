@@ -1,0 +1,22 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    let allBlogPaths: any[] = [];
+    const allBlogPosts = await getCollection('blog');
+
+    allBlogPosts.map((blogPost) => {
+        allBlogPaths = [...allBlogPaths, {params: {slug: blogPost.slug}}]
+    });
+
+    return allBlogPaths;
+}
+
+const { slug } = Astro.params
+const blogPost = await getEntry('blog', slug)
+const { Content } = await blogPost?.render()
+---
+<SiteLayout title=`Akash N P | ${blogPost?.data.title}`>
+    <Content />
+</SiteLayout>

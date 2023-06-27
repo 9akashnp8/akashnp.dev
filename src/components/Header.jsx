@@ -32,14 +32,13 @@ export default function Header() {
                 >
                     Home
                 </a>
-                <abbr title="work in progress :)" className="blog-abbr">
-                    <a 
-                        className={`${blogActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
-                        onClick={handleClick}
-                    >
-                        Blog
-                    </a>
-                </abbr>
+                <a 
+                    className={`${blogActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
+                    onClick={handleClick}
+                    href="/blog"
+                >
+                    Blog
+                </a>
                 <abbr title="work in progress :)" className="contact-abbr">
                     <a 
                         className={`${contactActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
