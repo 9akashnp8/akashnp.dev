@@ -60,3 +60,21 @@ abbr[title] {
     position: absolute;    
     z-index: 1;
 }
+
+@keyframes scale-down-on-scroll {
+    from {
+      font-size: 3em;
+      transform: translateY(0);
+    }
+    to {
+      font-size: 2.5em;
+      transform: translateY(20%);
+    }
+  }
+  
+
+.selector {
+    animation: scale-down-on-scroll 0.5s ease-out ;
+    animation-timeline: scroll();
+    animation-range: 0px 300px;
+}
