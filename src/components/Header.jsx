@@ -23,7 +23,7 @@ export default function Header() {
     }
 
     return (
-        <header className="pt-8 pb-3">
+        <header className="py-8">
             <nav className="flex items-center gap-3 md:gap-8">
                 <a 
                     className={`${homeActive ? 'font-bold text-white' : ''} text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
