@@ -1,0 +1,23 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    debugger;
+    let allNotePaths: any[] = [];
+    const allNotes = await getCollection('notes');
+
+    allNotes.map((note) => {
+        allNotePaths = [...allNotePaths, {params: {slug: note.slug}}]
+    });
+
+    return allNotePaths;
+}
+
+const { slug } = Astro.params
+const note = await getEntry('notes', slug!)
+const { Content } = await note?.render()
+---
+<SiteLayout title=`Akash N P | ${note?.data.title}`>
+    <Content />
+</SiteLayout>

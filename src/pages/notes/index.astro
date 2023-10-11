@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes');
+
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import NoteCard from "../../components/NoteCard";
+---
+<SiteLayout title="Akash N P | Blog">
+    {allNotes.map((note) => {
+        return (
+            <NoteCard
+                title={note.data.title}
+                content={""}
+                slug={note.slug}
+            />
+        )
+    })}
+</SiteLayout>
