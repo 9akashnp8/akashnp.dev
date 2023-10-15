@@ -16,6 +16,12 @@ export default function Header() {
                 >
                     Blog
                 </a>
+                <a 
+                    className={`text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
+                    href="/notes"
+                >
+                    Notes
+                </a>
                 <abbr title="work in progress :)" className="contact-abbr">
                     <a 
                         className={`text-neutral-400 text-lg p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
