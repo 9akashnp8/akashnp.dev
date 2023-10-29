@@ -1,6 +1,16 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import ProjectCard from "../components/ProjectCard";
+import { Octokit } from "octokit";
+
+const ghToken = import.meta.env.PUBLIC_GH_TOKEN
+const octokit = new Octokit({ auth: ghToken })
+
+let allRepoDetails;
+await octokit.paginate("GET /user/starred")
+	.then((repos) => {
+		allRepoDetails = repos.filter((repo) => repo.owner.login === "9akashnp8")
+	})
 ---
 <SiteLayout title='Akash NP | Home'>
 	<div class="intro | flex">
@@ -12,36 +22,15 @@ import ProjectCard from "../components/ProjectCard";
 	<div class="projects | mx-auto mb-10 py-8">
 		<h2 class="text-xl mb-5">Projects</h2>
 		<div class="cards | flex flex-wrap justify-center gap-2">
-			<ProjectCard
-				projectTitle='miniERP'
-				projectDescription='open source ERP application to simplify common departmental tasks.'
-				projectStack='Django, django-rest-framework'
-			/>
-			<ProjectCard
-				projectTitle='miniERP-Nextjs'
-				projectDescription='React Frontend for miniERP built with Next.js, consuming DRF REST APIs'
-				projectStack='Next.js, django-rest-framework'
-			/>
-			<ProjectCard
-				projectTitle='Student Manager'
-				projectDescription='simple open source Student Management application.'
-				projectStack='Next.js, NextAuth, Prisma'
-			/>
-			<ProjectCard
-				projectTitle='Find My Polo'
-				projectDescription='hobby project to analyse the used VW Polo market'
-				projectStack='FastAPI, React, MongoDB'
-			/>
-			<ProjectCard
-				projectTitle='Next-Libgen'
-				projectDescription='A modern UI for Library Genesis (libgen.is)'
-				projectStack='Next.js, Prisma'
-			/>
-			<ProjectCard
-				projectTitle='OLX Web Scraper'
-				projectDescription='Script that can scrape through OLX listings and export to csv.'
-				projectStack='Selenium'
-			/>												
+			{allRepoDetails.map((repo) => {
+				return (
+					<ProjectCard
+						projectTitle={repo.name}
+						projectDescription={repo.description}
+						projectStack={repo.language}
+					/>		
+				)
+			})}										
 		</div>
 	</div>
 </SiteLayout>
