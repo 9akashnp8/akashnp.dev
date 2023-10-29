@@ -1,3 +1,6 @@
+*.draft.md
+*.draft.mdx
+
 # build output
 dist/
 .astro/
