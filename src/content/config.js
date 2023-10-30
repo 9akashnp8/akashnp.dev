@@ -5,7 +5,8 @@ const blogCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         tags: z.array(z.string()),
-        publishDate: z.string().transform((str) => new Date(str))
+        publishDate: z.string().transform((str) => new Date(str)),
+        draft: z.boolean()
     })
 });
 
@@ -14,6 +15,7 @@ const notesCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         tags: z.array(z.string()),
+        draft: z.boolean()
     })
 })
 
