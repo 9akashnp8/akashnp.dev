@@ -1,0 +1,73 @@
+---
+title: 'Server-Sent Events: Build a Chat App with Streaming Response'
+slug: server-sent-events
+tags: ['server-sent-events', 'javascript', 'fastapi']
+publishDate: '27-06-2023'
+draft: true
+---
+
+<article class="prose prose-slate dark:prose-invert">
+    # Server-Sent Events: Build a Chat App with Streaming Response
+
+    ## Introduction: What are Server-Sent Events (SSE)?
+    
+    Imagine if a web page could subscribe to data from the server, all it had to do was establish connection to a certain endpoint, any updates from the server would be received via the connecton and the client could handle accordingly.
+    
+    This is what [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) allows, A client-server connection where the server can send data (Events) to the client whenever the server wants to. This is in contrast to the regular client-server connections wherein the client has to send data first to recieve data from the server.
+
+    ## Components of the app
+    
+    1. A Server that has capability to sent `text/event-stream` response
+    2. A Vanilla Js client that will use the native EventSource API to 1. Establish the SSE Connection & 2. Handle incomming messages
+
+    Let's build
+
+    ### The Server:
+
+    For the Server, we'll need a simple API server that has the capability to send text/event-stream response. For this demo, we'll be [FastAPI](https://fastapi.tiangolo.com/#installation). While FastAPI doesn't have any built-ins for streaming response, the server it's based on: starlette does, so we'll also need [sse_starlette](https://github.com/sysid/sse-starlette).
+
+    ```python
+    app.py
+
+    import asyncio
+    from fastapi import FastAPI
+    from fastapi.responses import Response
+    from sse_starlette import EventSourceResponse, ServerSentEvent
+
+    app = FastAPI()
+
+    # A global variable to store the client message that'll be 
+    # streamed back
+    streamable_str = ""
+
+    # The async generator that loops through each character in the client
+    # message (streamable_str) and yeilds each character. The last
+    # character is yeilded with a custom event: "end" which can help
+    # us track the stream on the client
+    async def mock_async_generator():
+        global streamable_str
+        end = len(streamable_str)
+        for idx, c in enumerate(streamable_str):
+            if idx == end - 1:
+                yield ServerSentEvent(data=c, event="end")
+                break
+            yield ServerSentEvent(data=c, event="message")
+            await asyncio.sleep(0.05)
+        streamable_str = ""
+
+    # The SSE endpoint
+    @app.get("/stream")
+    def get_stream():
+        if streamable_str:
+            return EventSourceResponse(content=mock_async_generator())
+        return EventSourceResponse(content=iter(()))
+
+
+    # The endpoint to recieve message from client
+    @app.post("/stream")
+    def post_user_message(payload: UserMessage):
+        global streamable_str
+        streamable_str = payload.message + " "
+        return Response("success")
+    ```
+</article>

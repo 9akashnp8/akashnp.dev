@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 
-const allNotes = await getCollection('notes');
+const allNotes = await getCollection('notes', ({ data }) => {
+    return data.draft !== true;
+});
 
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import NoteCard from "../../components/NoteCard";
