@@ -17,6 +17,6 @@ const { slug } = Astro.params
 const blogPost = await getEntry('blog', slug)
 const { Content } = await blogPost?.render()
 ---
-<SiteLayout title=`Akash N P | ${blogPost?.data.title}`>
+<SiteLayout title={`Akash N P | ${blogPost?.data.title}`}>
     <Content />
 </SiteLayout>
