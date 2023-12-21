@@ -13,8 +13,8 @@ import BlogCard from "../../components/BlogCard";
         return (
             <BlogCard
                 title={blogPost.data.title}
-                content={''}
                 slug={blogPost.slug}
+                publishDate={blogPost.data.publishDate.toLocaleDateString()}
             />
         )
     })}
