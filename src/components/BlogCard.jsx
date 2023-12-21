@@ -1,13 +1,15 @@
 
 export default function BlogCard({
-    title, slug, publishDate
+    title,
+    slug,
+    publishDate
 }) {
     return (
-        <div className="pb-8">
-            <a href={`blog/${slug}`} className="hover:underline underline-offset-4">
-                <h2 className="text-2xl font-bold pb-3" >{title}</h2>                
+        <div className="mb-8 p-3 rounded hover:bg-neutral-800">
+            <a href={`blog/${slug}`}>
+                <h2 className="text-xl font-bold pb-3" >{title}</h2>
+                <p>{publishDate}</p>
             </a>
-            <p>{publishDate}</p>
         </div>
     )
 }
