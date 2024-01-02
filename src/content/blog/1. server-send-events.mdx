@@ -15,7 +15,7 @@ draft: false
     
     This is what [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) allows, A uni-directional client-server connection where the server can push data (Events) to the client as it chooses. This is in contrast to the regular client-server connections wherein the client has to send a request first to recieve response from the server.
 
-    Applications for this response type can be Chat Apps (eg: [chat.openai.com](https://chat.openai.com)), Stock Price Trackers etc.
+    Applications that utilize this type of response are Chat Apps (eg: [chat.openai.com](https://chat.openai.com)), Stock Price Trackers etc.
 
     ## Components of the app
     
@@ -58,10 +58,6 @@ draft: false
     We'll be using the `EventSourceResponse` class from sse_starlette. It's usage is simple, we provide an async generator to the content attribute. The response object first returns 200 and then invokes the generator, any value yeilded by the generator is streamed back to the client as Server-Sent Events. Here is a simple sequence chart:
 
     ![Event Source Response Data Flow Chart](./images/eventsourcereponse-data-flow.png)
-
-    <sub><sup>The diagram above was created with [Erasers](https://eraser.io) ["Diagram As Code"](https://docs.eraser.io/docs/diagram-as-code) feature.</sup></sub>
-
-    We'll be using the `EventSourceResponse` from sse_starlette, this response type implements the Server Sent Event protocol and all it needs is an async generator, When the client initializes an EventSource connection to this endpoint, the response classes invokes the aysnc generator and streams the data recieved returned by the async generator.
 
     Let's build the async generator, for this app, the generator will simply yeild characters from a given string pausing for 0.05 seconds b/w each yeild. You can replace this with anything you like. Some examples: streaming response from llms like OpenAI, streaming html snippets etc.
 
