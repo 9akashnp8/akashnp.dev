@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import TableOfContents from "../../components/TableOfContents";
 import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -15,8 +16,11 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params
 const blogPost = await getEntry('blog', slug)
-const { Content } = await blogPost?.render()
+const { Content, headings } = await blogPost!.render()
 ---
 <SiteLayout title={`Akash N P | ${blogPost?.data.title}`}>
-    <Content />
+    <div class="flex gap-16">
+        <Content />
+        <TableOfContents headings={headings}/>
+    </div>
 </SiteLayout>
