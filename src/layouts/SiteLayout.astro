@@ -47,11 +47,11 @@ import '@fontsource-variable/inter';
 		</script>
 	</head>
 	<body>
-		<main class="flex px-8 bg-white dark:bg-neutral-900 text-black dark:text-white">
-            <div class="mx-auto w-full md:w-3/5 min-h-screen">
-                <Header client:load />
+		<main class="flex px-8 md:px-0 bg-white dark:bg-neutral-900 text-black dark:text-white">
+			<div class="mx-auto w-full md:w-4/6 min-h-screen">
+				<Header client:load />
 				<slot/>
-            </div>
-        </main>
+			</div>
+		</main>
     </body>
 </html>

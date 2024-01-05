@@ -9,7 +9,7 @@ draft: false
 <article class="prose prose-slate dark:prose-invert">
     # Server-Sent Events: How to Build a Chat App with Streaming Response like ChatGPT
 
-    ## Introduction: What are Server-Sent Events (SSE)?
+    ## Introduction
     
     Imagine if a web page could subscribe to data from the server, all it had to do was establish connection to a certain endpoint, any updates from the server would be received via the connecton and the client could handle accordingly.
     
@@ -24,7 +24,7 @@ draft: false
 
     Let's build!
 
-    ### The Server:
+    ### The Server
 
     We'll need a simple API server that has the capability to send SSE. For this demo, we'll be [FastAPI](https://fastapi.tiangolo.com/#installation). While FastAPI doesn't have any built-ins for SSE, the asgi server it's based on: [starlette](https://www.starlette.io/) does, so we'll also need [sse_starlette](https://github.com/sysid/sse-starlette).
 
@@ -114,7 +114,7 @@ draft: false
 
     Open up yout browser and open up http://localhost:8000/stream, you should be able to see "Hello World" being streamed characted by character. Great! We now have a basic server that sends SSE Response. Let's work on the front end now.
 
-    ### The Client:
+    ### The Client
 
     We'll be using vite to setup a vanilla js frontend.
 
