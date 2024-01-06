@@ -5,7 +5,7 @@ function Heading({ heading }) {
 
 export default function TableOfContents({ headings }) {
   return (
-    <aside id="table-of-contents" className="sticky top-10 self-start">
+    <aside id="table-of-contents" className="hidden lg:block sticky top-10 self-start">
       <h2 className="font-bold text-xl pb-3">Contents</h2>
       <ul className="text-slate-400">
         {headings.map((heading) => {

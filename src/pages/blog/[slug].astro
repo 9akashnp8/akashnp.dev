@@ -19,7 +19,7 @@ const blogPost = await getEntry('blog', slug)
 const { Content, headings } = await blogPost!.render()
 ---
 <SiteLayout title={`Akash N P | ${blogPost?.data.title}`}>
-    <div class="flex gap-16">
+    <div class="md:flex gap-16">
         <Content />
         <TableOfContents headings={headings}/>
     </div>
