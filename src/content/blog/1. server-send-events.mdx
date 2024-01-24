@@ -6,7 +6,7 @@ publishDate: '2023-12-21'
 draft: false
 ---
 
-<article class="prose prose-slate dark:prose-invert">
+<article class="prose prose-stone dark:prose-invert">
     # Server-Sent Events: How to Build a Chat App with Streaming Response like ChatGPT
 
     <div class="lg:hidden">
@@ -20,11 +20,11 @@ draft: false
 
     ## Introduction
     
-    Imagine if a web page could subscribe to data from the server, all it had to do was establish connection to a certain endpoint, any updates from the server would be received via the connecton and the client could handle accordingly.
+    Imagine if a web page could subscribe to data from the server, all it had to do was establish connection to a certain endpoint, any updates from the server would be sent via the connecton and the client could handle accordingly.
     
     This is what [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) allows, A uni-directional client-server connection where the server can push data (Events) to the client as it chooses. This is in contrast to the regular client-server connections wherein the client has to send a request first to recieve response from the server.
 
-    Applications that utilize this type of response are Chat Apps (eg: [chat.openai.com](https://chat.openai.com)), Stock Price Trackers etc.
+    The most familiar example of an app that utilizes SSE would be ChatGPTs chat interface where the response from the LLM is streamed to the client. This has mulitple benefits, the most important being the reduced perceived latency as the used need not wait for the whole response to be generated, the LLM will stream characters as it _predicts_ them.
 
     ## Components of the app
     
@@ -35,7 +35,7 @@ draft: false
 
     ### The Server
 
-    We'll need a simple API server that has the capability to send SSE. For this demo, we'll be [FastAPI](https://fastapi.tiangolo.com/#installation). While FastAPI doesn't have any built-ins for SSE, the asgi server it's based on: [starlette](https://www.starlette.io/) does, so we'll also need [sse_starlette](https://github.com/sysid/sse-starlette).
+    We'll need a simple API server that has the capability to send SSE. For this demo, we'll be using [FastAPI](https://fastapi.tiangolo.com/#installation). While FastAPI doesn't have any built-ins for SSE, the asgi server it's based on: [starlette](https://www.starlette.io/) does, so we'll also need [sse_starlette](https://github.com/sysid/sse-starlette).
 
     #### Setup
 
@@ -72,6 +72,8 @@ draft: false
 
     ```python
     app.py
+
+    import asyncio
 
     ...
 
@@ -208,6 +210,8 @@ draft: false
         }
     })
     ```
+    [createMessageIdPair](https://github.com/9akashnp8/learn-server-sent-events/blob/main/vanilla-js-client/utils.js#L12) is used to differentiate client and server messages. [createChatMessageEl](https://github.com/9akashnp8/learn-server-sent-events/blob/main/vanilla-js-client/utils.js#L20) is a simple wrapper to create the actual `<li>` element.
+
 
     Now, handling the streaming response received from the server.
 
@@ -239,11 +243,16 @@ draft: false
 
     Head over to the client at http://localhost:5173 and type and send a message, you should get the same message streamed back.
 
+    Here the full app: [learn-server-sent-events](https://github.com/9akashnp8/learn-server-sent-events). Contains bonus implementation of SSE in React as well.
+
     ## Closing thoughts
 
     Learning and implementing SSE has been fun, it all started when I observed how chat GPT got it done.
 
     Keep building!
+
+    ## References
+    1. https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
 
     <br></br>
 </article>
