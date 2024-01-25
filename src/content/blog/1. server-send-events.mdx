@@ -77,8 +77,8 @@ draft: false
 
     ...
 
-    # A global variable to store the client message that'll be 
-    # streamed back
+    # A global variable to hold the client message that'll be 
+    # streamed back.
     streamable_str = ""
 
     async def mock_async_generator():
@@ -88,7 +88,19 @@ draft: false
             await asyncio.sleep(0.05)
         streamable_str = ""
     ```
+    Now, we'll need an endpoint to received the client message and update `streamable_str`. You could replace this logic with maybe adding the message to a [Queue](https://docs.python.org/3/library/queue.html) but we'll keep it simple for now.
 
+    ```python
+    app.py
+
+    ...
+
+    @app.post("/stream")
+    def post_user_message(payload: UserMessage):
+        global streamable_str
+        streamable_str = payload.message + " "
+        return Response("success")
+    ```
     Next, the sse endpoint.
 
     ```python
