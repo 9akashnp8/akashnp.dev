@@ -1,7 +1,6 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import TableOfContents from "../../components/TableOfContents";
-import { Icon } from 'astro-icon/components'
 import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -19,7 +18,11 @@ const { slug } = Astro.params
 const blogPost = await getEntry('blog', slug)
 const { Content, headings } = await blogPost!.render()
 ---
-<SiteLayout title={`Akash N P | ${blogPost?.data.title}`}>
+<SiteLayout
+    title={`Akash N P | ${blogPost?.data.title}`}
+    slug={blogPost?.slug}
+    shortDescription='Learn how to implement SSE and build a chat app with streaming response like ChatGPT'
+>
     <div class="lg:flex gap-16">
         <Content />
         <TableOfContents headings={headings}/>

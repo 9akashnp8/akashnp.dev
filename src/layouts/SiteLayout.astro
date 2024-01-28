@@ -1,7 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Header from "../components/Header";
-const { title } = Astro.props;
+const { title, slug, shortDescription } = Astro.props;
 import '@fontsource-variable/inter';
 ---
 <html lang="en">
@@ -28,6 +28,8 @@ import '@fontsource-variable/inter';
 		<title>{title}</title>
 		<meta property="og:title" content={title} />
 		<meta property="og:type" content="website" />
+		<meta property='og:description' content={shortDescription} />
+		<meta property="og:url" content=`https://akashnp.dev/blog/${slug}` />
     <ViewTransitions />
 		<link rel="stylesheet" href="/style.css">
 		<script>
