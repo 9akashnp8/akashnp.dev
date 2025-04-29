@@ -1,0 +1,74 @@
+---
+title: 'Ninja PageNumberPagination: Implement Custom Response Structure'
+slug: how-to-customize-response-structure-of-ninja-pagination
+tags: ['django', 'django-ninja', 'custom']
+publishDate: '2025-03-11'
+draft: true
+---
+
+<article class="prose prose-stone dark:prose-invert">
+  # Ninja PageNumberPagination: Implement Custom Response Structure
+
+  ## Introduction
+  Ninja is a Async first Django API framework. Just like DRF it contains multiple classes
+  to easily get up and running with your API server. For pagination, it contains the PageNumberPagination
+  class. 
+
+  The problem was we wanted to add a new custom key to the final response, this blog just documents how we went
+  about implementing the requirement.
+
+  ## PageNumberPagination
+  The `PageNumberPagination` class easily allows us to implement page based pagination. The docs did not contain
+  any relevant information regarding this, leading us to investigate the actual class implementation.
+
+  ### OutputSchema and `paginate_queryset`
+  Looking into the under workings of the pagination class we discovered that the response structure is controlled
+  by two components:
+
+  1. **paginate_queryset**: This method is what is responsible for returning the actual response data, we can see that
+  this method returns the actual response data in the "items" and "count" dictonary format.
+  2. **OutputSchema**: This takes the return value from paginate_queryset and conforms it to it's schema fields ensuring
+  the final response is of the format defined in the OutputSchema.
+
+  With this, we have an understanding of what changes will be required.
+
+  ## Implementation
+
+  We will write an custom class inherited from `PageNumberPagination` with the following requirements: the class
+  should be able to update the final response data with any user specified dictionary, the class should be able
+  to support a custom user defined OutputSchema.
+
+  ```python
+  from ninja.pagination import PageNumberPagination
+
+  class PageNumberPaginationWithExtra(PageNumberPagination):
+
+    def __init__(
+        self, output_schema, page_size: int = settings.PAGINATION_PER_PAGE, **kwargs: Any
+    ) -> None:
+        if output_schema:
+          self.OutputSchema = output_schema
+        super().__init__(**kwargs)
+
+    def paginate_queryset(
+        self,
+        queryset: QuerySet,
+        pagination: Input,
+        **params: Any,
+    ) -> Any:
+        offset = (pagination.page - 1) * self.page_size
+        return {
+            "items": queryset[offset : offset + self.page_size],
+            "count": self._items_count(queryset),
+        }  # noqa: E203
+        response = super().paginate_queryset()
+        extra_info = params.get("pagination_extra")
+        response.update(extra_info)
+        return response
+  ```
+
+  This implementation allowed us to add custom keys to the final paginated response
+  data
+  
+  <br></br>
+</article>
