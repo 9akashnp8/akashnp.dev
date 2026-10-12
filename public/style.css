@@ -70,3 +70,35 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #757575;
 }
+/* Claude Code usage dashboard: categorical slots validated for light & dark card surfaces */
+.usage-root {
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+    --series-4: #eda100;
+    --series-5: #e87ba4;
+    --series-6: #008300;
+    --series-7: #6250d6;
+    --series-8: #e34948;
+    --viz-grid: #e5e5e5;
+    --viz-axis: #d4d4d4;
+    --viz-muted: #737373;
+    --viz-empty: #e5e5e5;
+}
+
+@media (prefers-color-scheme: dark) {
+    .usage-root {
+        --series-1: #3987e5;
+        --series-2: #d95926;
+        --series-3: #199e70;
+        --series-4: #c98500;
+        --series-5: #d55181;
+        --series-6: #008300;
+        --series-7: #9085e9;
+        --series-8: #e66767;
+        --viz-grid: #2e2e2e;
+        --viz-axis: #404040;
+        --viz-muted: #8a8a8a;
+        --viz-empty: #2e2e2e;
+    }
+}
