@@ -22,6 +22,12 @@ export default function Header() {
                 >
                     notes
                 </a>
+                <a 
+                    className={`text-neutral-400 text-md p-2 rounded-lg hover:bg-neutral-800 cursor-pointer`}
+                    href="/usage"
+                >
+                    usage
+                </a>
             </nav>
         </header>
     )

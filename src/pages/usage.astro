@@ -1,0 +1,25 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import UsageDashboard from "../components/usage/UsageDashboard";
+import { buildUsageData, demoDeviceFiles } from "../lib/claudeUsage";
+
+// One file per device, written by `npm run usage:sync`.
+const deviceFiles = Object.values(import.meta.glob("../data/claude-usage/*.json", { eager: true, import: "default" }));
+const isDemo = deviceFiles.length === 0 && import.meta.env.DEV;
+const data = buildUsageData(isDemo ? demoDeviceFiles() : deviceFiles);
+---
+<SiteLayout title="Akash NP | AI usage" shortDescription="My Claude Code usage, merged across every device I code on.">
+	<div class="mb-16">
+		<div class="mb-6">
+			<h1 class="text-3xl font-bold mb-3">AI usage</h1>
+			<p class="text-neutral-600 dark:text-neutral-400">
+				How much I lean on Claude Code. Claude Code only tracks usage per machine, so each of my devices
+				syncs its own totals here and this page adds them up.
+				{isDemo && <span class="ml-1 rounded-md bg-amber-500/15 px-1.5 py-0.5 text-xs text-amber-600 dark:text-amber-400">sample data (dev only)</span>}
+			</p>
+		</div>
+		{data
+			? <UsageDashboard client:visible data={data} />
+			: <p class="rounded-xl border border-black/10 dark:border-white/10 p-6 text-neutral-500">No usage synced yet.</p>}
+	</div>
+</SiteLayout>
