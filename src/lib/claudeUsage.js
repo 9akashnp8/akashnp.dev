@@ -1,5 +1,6 @@
-// Merges the per-device files written by scripts/claude-usage.mjs into one
-// compact payload for the usage dashboard. Runs at build time.
+// Merges the per-device files (from the usage-sync plugin's data repository,
+// or scripts/claude-usage.mjs) into one compact payload for the usage
+// dashboard. Runs at build time.
 
 const MAX_SERIES = 8;
 const FAMILIES = ["opus", "sonnet", "haiku", "fable", "instant"];
@@ -24,8 +25,28 @@ function rankSeries(totals) {
     return { names: [...kept, "Other"], indexOf: (n) => (kept.includes(n) ? kept.indexOf(n) : MAX_SERIES - 1) };
 }
 
+// The same device can arrive from both sources; for each day the fuller copy
+// wins, as the plugin and the script both merge.
+function mergeByDevice(deviceFiles) {
+    const byDevice = new Map();
+    for (const file of deviceFiles.filter((f) => f && f.days)) {
+        const seen = byDevice.get(file.device);
+        if (!seen) {
+            byDevice.set(file.device, file);
+            continue;
+        }
+        const days = { ...seen.days };
+        for (const [date, day] of Object.entries(file.days)) {
+            if (!days[date] || days[date].messages <= day.messages) days[date] = day;
+        }
+        const newer = seen.updatedAt >= file.updatedAt ? seen : file;
+        byDevice.set(file.device, { ...newer, days });
+    }
+    return [...byDevice.values()];
+}
+
 export function buildUsageData(deviceFiles) {
-    const files = deviceFiles.filter((f) => f && f.days);
+    const files = mergeByDevice(deviceFiles);
     if (!files.length) return null;
 
     const modelTotals = {};
