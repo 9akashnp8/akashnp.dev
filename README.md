@@ -32,7 +32,6 @@ Build settings (all optional):
   replaces the published page with an empty one. A missing repository or folder
   just means nothing has synced yet.
 - Files in `src/data/claude-usage/` are merged in too. `npm run usage:sync -- --device <name>`
-  writes one from local transcripts, for history the plugin can't import (it skips
-  transcripts of 4 MB or more). Where both sources have a device, each day keeps the
-  fuller copy.
+  writes one from local transcripts, for a machine without the plugin. Where both
+  sources have a device, each day keeps the fuller copy.
 - In `npm run dev` with no device files, the page shows clearly labelled sample data.
