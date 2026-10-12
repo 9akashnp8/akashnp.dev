@@ -2,9 +2,25 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import UsageDashboard from "../components/usage/UsageDashboard";
 import { buildUsageData, demoDeviceFiles } from "../lib/claudeUsage";
+import { fetchDeviceFiles } from "../lib/usageRepo";
 
-// One file per device, written by `npm run usage:sync`.
-const deviceFiles = Object.values(import.meta.glob("../data/claude-usage/*.json", { eager: true, import: "default" }));
+// One file per device: committed to the data repository by the usage-sync plugin,
+// or written here by `npm run usage:sync`.
+const localFiles = Object.values(import.meta.glob("../data/claude-usage/*.json", { eager: true, import: "default" }));
+let remoteFiles = [];
+try {
+	remoteFiles = await fetchDeviceFiles({
+		repo: import.meta.env.USAGE_DATA_REPO ?? "9akashnp8/claude-usage-data",
+		branch: import.meta.env.USAGE_DATA_BRANCH,
+		folder: import.meta.env.USAGE_DATA_FOLDER,
+		token: import.meta.env.USAGE_DATA_TOKEN,
+	});
+} catch (error) {
+	// A production build fails rather than publish an empty page over the last good one.
+	if (import.meta.env.PROD) throw error;
+	console.warn(`usage: ${error.message}`);
+}
+const deviceFiles = [...remoteFiles, ...localFiles];
 const isDemo = deviceFiles.length === 0 && import.meta.env.DEV;
 const data = buildUsageData(isDemo ? demoDeviceFiles() : deviceFiles);
 ---
