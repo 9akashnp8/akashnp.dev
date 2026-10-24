@@ -31,11 +31,11 @@ const data = buildUsageData(isDemo ? demoDeviceFiles() : deviceFiles);
 			<p class="text-neutral-600 dark:text-neutral-400">
 				How much I lean on Claude Code. Claude Code only tracks usage per machine, so each of my devices
 				syncs its own totals here and this page adds them up.
-				{isDemo && <span class="ml-1 rounded-md bg-amber-500/15 px-1.5 py-0.5 text-xs text-amber-600 dark:text-amber-400">sample data (dev only)</span>}
+				{isDemo && <span class="ml-1 rounded-md bg-amber-500/15 px-1.5 py-0.5 text-xs text-amber-800 dark:text-amber-400">sample data (dev only)</span>}
 			</p>
 		</div>
 		{data
 			? <UsageDashboard client:visible data={data} />
-			: <p class="rounded-xl border border-black/10 dark:border-white/10 p-6 text-neutral-500">No usage synced yet.</p>}
+			: <p class="rounded-xl border border-black/10 dark:border-white/10 p-6 text-neutral-500 dark:text-[#8a8a8a]">No usage synced yet.</p>}
 	</div>
 </SiteLayout>

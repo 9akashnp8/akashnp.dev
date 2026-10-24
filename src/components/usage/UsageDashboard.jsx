@@ -27,7 +27,7 @@ function Segmented({ options, value, onChange, label }) {
                     className={`rounded-md px-2 py-1 text-sm transition-colors ${
                         value === option.id
                             ? "bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
-                            : "text-neutral-500 hover:text-black dark:hover:text-white"
+                            : "text-neutral-500 hover:text-black dark:text-[#8a8a8a] dark:hover:text-white"
                     }`}
                 >
                     {option.label}
@@ -206,7 +206,7 @@ export default function UsageDashboard({ data }) {
                 </div>
             )}
 
-            <p className="mt-4 border-t border-black/10 pt-3 text-xs text-neutral-500 dark:border-white/10">
+            <p className="mt-4 border-t border-black/10 pt-3 text-xs text-neutral-500 dark:border-white/10 dark:text-[#8a8a8a]">
                 Claude Code usage merged from {data.devices.length} device{data.devices.length === 1 ? "" : "s"} · last synced {lastSynced}
             </p>
         </section>

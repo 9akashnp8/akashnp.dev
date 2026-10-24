@@ -24,7 +24,7 @@ export default function Punchcard({ matrix }) {
         <div>
             <div className="grid gap-[3px]" style={{ gridTemplateColumns: "2rem repeat(24, minmax(0, 1fr))" }}>
                 {matrix.map((row, day) => [
-                    <div key={`label-${day}`} className="self-center text-[11px] leading-none text-neutral-500">
+                    <div key={`label-${day}`} className="self-center text-[11px] leading-none text-neutral-500 dark:text-[#8a8a8a]">
                         {day % 2 === 0 ? WEEKDAYS[day] : ""}
                     </div>,
                     ...row.map((value, hour) => (
@@ -36,7 +36,7 @@ export default function Punchcard({ matrix }) {
                             onMouseLeave={() => setActive(null)}
                             onFocus={() => setActive({ day, hour, value })}
                             onBlur={() => setActive(null)}
-                            className="aspect-square rounded-[3px] outline-none ring-neutral-400 focus-visible:ring-2"
+                            className="aspect-square rounded-[3px] outline-none ring-neutral-500 focus-visible:ring-2 dark:ring-neutral-400"
                             style={
                                 value > 0
                                     ? { background: "var(--series-1)", opacity: LEVEL_OPACITY[level(value)] }
@@ -47,12 +47,12 @@ export default function Punchcard({ matrix }) {
                 ])}
                 <div />
                 {Array.from({ length: 24 }, (_, hour) => (
-                    <div key={hour} className="pt-1 text-center text-[11px] leading-none text-neutral-500">
+                    <div key={hour} className="pt-1 text-center text-[11px] leading-none text-neutral-500 dark:text-[#8a8a8a]">
                         {hour % 6 === 0 ? hourLabel(hour).replace(" ", "").toLowerCase() : ""}
                     </div>
                 ))}
             </div>
-            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-500">
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-500 dark:text-[#8a8a8a]">
                 <span className="tabular-nums">
                     {shown.value > 0
                         ? `${active ? "" : "Busiest: "}${WEEKDAYS[shown.day]} ${hourLabel(shown.hour)} · ${integer(shown.value)} responses`
