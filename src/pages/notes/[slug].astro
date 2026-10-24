@@ -18,6 +18,6 @@ const { slug } = Astro.params
 const note = await getEntry('notes', slug!)
 const { Content } = await note?.render()
 ---
-<SiteLayout title=`Akash N P | ${note?.data.title}`>
+<SiteLayout title=`Akash NP | ${note?.data.title}`>
     <Content />
 </SiteLayout>

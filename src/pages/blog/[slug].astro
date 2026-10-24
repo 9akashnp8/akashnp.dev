@@ -19,7 +19,7 @@ const blogPost = await getEntry('blog', slug)
 const { Content, headings } = await blogPost!.render()
 ---
 <SiteLayout
-    title={`Akash N P | ${blogPost?.data.title}`}
+    title={`Akash NP | ${blogPost?.data.title}`}
     slug={blogPost?.slug}
     shortDescription='Learn how to implement SSE and build a chat app with streaming response like ChatGPT'
 >
