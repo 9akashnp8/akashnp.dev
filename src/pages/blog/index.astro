@@ -8,7 +8,7 @@ const allBlogPosts = await getCollection('blog', ({ data }) => {
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import BlogCard from "../../components/BlogCard";
 ---
-<SiteLayout title="Akash N P | Blog">
+<SiteLayout title="Akash NP | Blog">
     {allBlogPosts.map((blogPost) => {
         return (
             <BlogCard
